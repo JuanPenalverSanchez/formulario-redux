@@ -21,7 +21,7 @@ export const dataSlice = createSlice({
       state.value += action.payload;
     },
     saveData: (state, payload) => {
-      state.data = { ...state.data, payload };
+      state.data = payload;
     },
   },
 });

@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment, saveData } from '../../state/slice';
 // Estilos
 import './FormularioEstilo.css';
-// Validaciones
-import * as Yup from 'yup';
 import {
   TextField,
   FormControl,
@@ -27,7 +25,8 @@ export default function Formulario() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => dispatch(saveData(data));
+  const onSubmit = (data) =>
+    dispatch({ type: 'datos/saveData', payload: data });
 
   return (
     <React.Fragment>
@@ -85,7 +84,8 @@ export default function Formulario() {
             label="Mobile number"
             variant="standard"
             color="secondary"
-            {...register('Mobile number', {
+            name="telefono"
+            {...register('telefono', {
               required: false,
               minLength: 6,
               maxLength: 12,
@@ -105,6 +105,7 @@ export default function Formulario() {
               color="secondary"
               onChange={handleChange}
               defaultValue={0}
+              name="genero"
               {...register('genero', { required: false })}
             >
               <MenuItem value={'HOMBRE'}>Hombre</MenuItem>
