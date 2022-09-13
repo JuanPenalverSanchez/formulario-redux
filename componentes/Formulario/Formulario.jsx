@@ -1,7 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 // Estilos
-import FormularioEstilo from './FormularioEstilo';
+import {
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  Title,
+  handleChange,
+  MenuItem,
+  FormGroup,
+} from '@mui/material';
 
 export default function Formulario() {
   const {
@@ -13,52 +22,61 @@ export default function Formulario() {
   console.log(errors);
 
   return (
-    <FormularioEstilo>
+    <FormGroup>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="First name"
+        <TextField
+          id="standard-basic"
+          label="First Name"
+          variant="standard"
           {...register('First name', { required: true, maxLength: 80 })}
         />
-        <input
-          type="text"
-          placeholder="Last name"
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Last Name"
+          variant="standard"
           {...register('Last name', { required: true, maxLength: 100 })}
         />
-        <input
-          type="text"
-          placeholder="Email"
-          {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Email"
+          variant="standard"
+          {...register('Email', { required: true, maxLength: 100 })}
         />
-        <input
-          type="tel"
-          placeholder="Mobile number"
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Mobile number"
+          variant="standard"
           {...register('Mobile number', {
             required: true,
             minLength: 6,
             maxLength: 12,
           })}
         />
-        <select {...register('Title', { required: true })}>
-          <option value="Mr">Mr</option>
-          <option value="Mrs">Mrs</option>
-          <option value="Miss">Miss</option>
-          <option value="Dr">Dr</option>
-        </select>
-
-        <input
-          {...register('Developer', { required: true })}
-          type="radio"
-          value="Yes"
-        />
-        <input
-          {...register('Developer', { required: true })}
-          type="radio"
-          value="No"
-        />
+        <br />
+        <br />
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Title</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Title}
+            label="Title"
+            onChange={handleChange}
+            {...register('Title', { required: true })}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        <br />
+        <br />
 
         <input type="submit" />
       </form>
-    </FormularioEstilo>
+    </FormGroup>
   );
 }
