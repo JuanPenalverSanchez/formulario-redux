@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 
 export default function Formulario() {
-  const data = useSelector((state) => state);
+  const data = useSelector((state) => state.datos.data.payload);
   console.log(data);
   const dispatch = useDispatch();
   const {
