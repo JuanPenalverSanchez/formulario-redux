@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 // Estilos
 import './FormularioEstilo.css';
+// Validaciones
+import * as Yup from 'yup';
 import {
   TextField,
   FormControl,
@@ -20,33 +22,51 @@ export default function Formulario() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
-  console.log(errors);
-
   return (
     <FormGroup>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
+          error={errors?.nombre}
           id="standard-basic"
           label="First Name"
           variant="standard"
           color="primary"
-          {...register('First name', { required: true, maxLength: 80 })}
+          name="nombre"
+          helperText={errors?.nombre?.message}
+          {...register('nombre', {
+            maxLength: { value: 50, message: 'Logitud máxima excedida' },
+            required: { value: true, message: 'Este campo es obligatorio' },
+          })}
         />
         <br />
         <TextField
+          error={errors?.apellido}
           id="standard-basic"
           label="Last Name"
           variant="standard"
           color="secondary"
-          {...register('Last name', { required: true, maxLength: 100 })}
+          name="apellido"
+          helper-text={errors?.apellido?.message}
+          {...register('apellido', {
+            maxLength: { value: 50, message: 'Logitud máxima excedida' },
+            required: { value: true, message: 'Este campo es obligatorio' },
+          })}
         />
         <br />
         <TextField
+          error={errors?.email}
           id="standard-basic"
           label="Email"
+          type="email"
           variant="standard"
           color="secondary"
-          {...register('Email', { required: true, maxLength: 100 })}
+          name="email"
+          helperText={errors?.email?.message}
+          {...register('email', {
+            maxLength: { value: 250, message: 'Logitud máxima excedida' },
+            required: { value: true, message: 'Este campo es obligatorio' },
+            pattern: { value: /^\S+@\S+$/i, message: 'El e-mail no es valido' },
+          })}
         />
         <br />
         <TextField
@@ -55,27 +75,28 @@ export default function Formulario() {
           variant="standard"
           color="secondary"
           {...register('Mobile number', {
-            required: true,
+            required: false,
             minLength: 6,
             maxLength: 12,
           })}
         />
         <br />
         <br />
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">Title</InputLabel>
+        <FormControl variant="standard">
+          <InputLabel id="demo-simple-select-standard-label">Gender</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
             value={Title}
-            label="Title"
+            label="Gender"
             color="secondary"
             onChange={handleChange}
-            {...register('Title', { required: true })}
+            defaultValue={0}
+            {...register('genero', { required: false })}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={'HOMBRE'}>Hombre</MenuItem>
+            <MenuItem value={'MUJER'}>Mujer</MenuItem>
+            <MenuItem value={'OTRO'}>Otro</MenuItem>
           </Select>
         </FormControl>
         <br />
