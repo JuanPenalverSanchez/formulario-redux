@@ -1,12 +1,15 @@
 import * as React from 'react';
 import './style.css';
-// COMPONENTES
+// Components
 import Formulario from './componentes/Formulario/Formulario';
+// Redux
+import store from './state/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
-    <div>
+    <Provider store={store}>
       <Formulario />
-    </div>
+    </Provider>
   );
 }
