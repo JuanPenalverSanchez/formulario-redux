@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 // Estilos
+import './FormularioEstilo.css';
 import {
   TextField,
   FormControl,
@@ -28,6 +29,7 @@ export default function Formulario() {
           id="standard-basic"
           label="First Name"
           variant="standard"
+          color="primary"
           {...register('First name', { required: true, maxLength: 80 })}
         />
         <br />
@@ -35,6 +37,7 @@ export default function Formulario() {
           id="standard-basic"
           label="Last Name"
           variant="standard"
+          color="secondary"
           {...register('Last name', { required: true, maxLength: 100 })}
         />
         <br />
@@ -42,6 +45,7 @@ export default function Formulario() {
           id="standard-basic"
           label="Email"
           variant="standard"
+          color="secondary"
           {...register('Email', { required: true, maxLength: 100 })}
         />
         <br />
@@ -49,6 +53,7 @@ export default function Formulario() {
           id="standard-basic"
           label="Mobile number"
           variant="standard"
+          color="secondary"
           {...register('Mobile number', {
             required: true,
             minLength: 6,
@@ -57,13 +62,14 @@ export default function Formulario() {
         />
         <br />
         <br />
-        <FormControl fullWidth>
+        <FormControl>
           <InputLabel id="demo-simple-select-label">Title</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={Title}
             label="Title"
+            color="secondary"
             onChange={handleChange}
             {...register('Title', { required: true })}
           >
@@ -74,8 +80,12 @@ export default function Formulario() {
         </FormControl>
         <br />
         <br />
-
-        <input type="submit" />
+        <button data-text="Awesome" class="button" type="submmit">
+          <span class="actual-text">&nbsp;ENVIAR&nbsp;</span>
+          <span class="hover-text" aria-hidden="true">
+            &nbsp;ENVIAR&nbsp;
+          </span>
+        </button>
       </form>
     </FormGroup>
   );

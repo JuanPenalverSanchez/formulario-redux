@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './style.css';
 // COMPONENTES
 import Formulario from './componentes/Formulario/Formulario';
 
