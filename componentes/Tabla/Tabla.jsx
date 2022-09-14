@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 
 const Tabla = () => {
-  const data = useSelector((state) => state.datos.data.payload);
+  const data = useSelector((state) => state.datos.data);
   console.log(data);
   return (
     <table>
@@ -14,15 +14,16 @@ const Tabla = () => {
         <th>Telefono</th>
         <th>Genero</th>
       </tr>
-      {data && (
-        <tr>
-          <td>{data.nombre}</td>
-          <td>{data.apellido}</td>
-          <td>{data.email}</td>
-          <th>{data.telefono}</th>
-          <th>{data.genero}</th>
-        </tr>
-      )}
+      {data.length != 0 &&
+        data.map((dat) => (
+          <tr>
+            <td>{dat.payload.nombre}</td>
+            <td>{dat.payload.apellido}</td>
+            <td>{dat.payload.email}</td>
+            <th>{dat.payload.telefono}</th>
+            <th>{dat.payload.genero}</th>
+          </tr>
+        ))}
     </table>
   );
 };

@@ -4,7 +4,7 @@ export const dataSlice = createSlice({
   name: 'datos',
   initialState: {
     value: 0,
-    data: {},
+    data: [],
   },
   reducers: {
     increment: (state) => {
@@ -21,7 +21,7 @@ export const dataSlice = createSlice({
       state.value += action.payload;
     },
     saveData: (state, payload) => {
-      state.data = payload;
+      state.data = [...state.data, payload];
     },
   },
 });
